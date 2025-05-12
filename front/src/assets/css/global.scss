@@ -1,0 +1,14 @@
+@import "./themes";
+@import "./shared";
+@import "layouts/layout-not-found";
+@import "layouts/layout-login";
+@import "layouts/layout-dashboard";
+
+#root{
+	position: absolute;
+	z-index: 1;
+}
+
+.swal2-container{
+	display: grid !important;	
+}

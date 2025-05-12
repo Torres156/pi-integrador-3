@@ -1,0 +1,374 @@
+@mixin isMobile {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+body{
+    display: flex;
+    max-width: 100%;
+    min-height: 100dvh;
+    background-color: var(--bg-color);
+
+    #root{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        flex-direction: column;
+
+        main{
+            display: flex;
+            width: 100%;            
+            flex:1;
+        }
+    }    
+}
+
+a {
+    text-decoration: none;
+}
+
+div{
+    display: flex;
+}
+
+button{
+    cursor: pointer;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.form-input{    
+    width: 100%;
+    gap: 10px;
+    label{
+        width: 100%;
+        color: var(--label-color);
+        font-weight: 600;
+        font-size: 12px;
+    }
+    input,select{
+        border: none;
+        border-bottom: 2px solid var(--border-color) ;        
+        height: 30px;
+        width: 100%;
+        background: none;
+        color: var(--text-primary);
+        font-weight: 500;
+
+        &::placeholder{
+            color: var(--text-secondary);
+        }
+
+        &:focus{
+            border: none;
+            outline: none;
+            border-bottom: 2px solid var(--border-color) ; 
+        }
+    }
+
+    select:focus {
+        color: black;
+    }
+}
+
+.form-button{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 30px;    
+
+    border: 0;
+    border-radius: 4px;
+
+    background-color: var(--button-color);
+    transition: background-color .45s;
+
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    &:hover{
+        background-color: var(--button-hover-color);
+    }
+}
+
+.w-full
+{
+    width: 100%;
+}
+
+.gap-4
+{
+    gap: 1em;
+}
+
+.text-primary{
+    color: var(--text-primary);
+}
+
+.text-secondary{
+    color: var(--text-secondary);
+}
+
+.text-button{
+    color: var(--button-color);
+
+    &:hover{
+        color: var(--button-hover-color);
+    }
+}
+
+.text-secondary-hover{    
+    transition: color 0.3s;
+
+    &:hover{
+        color: var(--text-primary);
+    }
+}
+
+.bottom{
+    bottom: 0;
+}
+
+.relative{
+    position: relative;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.space-between{    
+    justify-content: space-between;
+}
+
+.m-10{
+    margin: 20px;
+}
+
+.mt-10{
+    margin: 10px;
+}
+
+.mt-20{
+    margin: 20px;
+}
+
+.mt-40{
+    margin-top: 40px;
+}
+
+
+@keyframes fadeIn
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.translucy-desktop{
+    opacity: .8;
+    backdrop-filter: blur(10px);
+
+    @media screen and (max-width: 768px) {
+        opacity: unset;
+        backdrop-filter: unset;
+    }
+}
+
+.toggle-theme{
+    position: fixed;
+    top:0;
+    right: 0;
+    z-index: 999;
+    
+    .close{
+        margin-left: 0;
+        margin-top: 20px;
+        margin-right: 20px;
+
+        cursor: pointer;
+
+        svg {
+            fill: var(--button-color);
+            transition: fill .4s;
+        }
+
+        &:hover svg {
+            fill: var(--button-hover-color)
+        }
+    }
+}
+
+.row{
+    flex-direction: row;
+}
+
+.container{    
+    padding: 40px;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    box-shadow: 0px 0 10px var(--shadow-color);     
+    
+    h1{
+        color: var(--text-primary);
+        font-size: 18px;
+    }
+}
+
+.aspect{
+    flex:1 0 250px;
+    aspect-ratio: 1/1;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 1078px) {
+    .agendamentos-home{
+        flex-direction: column;  
+        align-items: center; /* centraliza horizontalmente */     
+        
+        .aspect{      
+            flex: 1;  
+            aspect-ratio: 1/1;
+            max-width: 350px;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0;
+        flex-direction: column;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .aspect{        
+        aspect-ratio: 3/1;
+    }
+}
+
+.donut{
+    position: relative;
+}
+
+.donut-percent{
+    font-size: 17px;    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    
+    span{
+        z-index: 1;                
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translate(0, -50%);
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        color: var(--search-placeholder);
+        font-size: 14px;        
+
+        svg{
+            stroke: var(--search-placeholder) !important;
+        }
+    }
+
+    input[type='text']
+    {
+        width: 100%;
+        max-width: 550px;
+        padding: 10px 5px;        
+        border: none;
+        border-radius: 4px;      
+        color: var(--search-color);
+        font-weight: 600;
+        font-size: 14px;        
+        background-color: var(--search-background);        
+    }
+
+    input[type='text']:focus {
+        border: none;
+        border-radius: 4px;  
+        outline: none;
+    }
+}
+
+.gap-10{
+    gap: 10px;
+}
+
+.gap-20{
+    gap: 20px;
+}
+
+.col-2
+{
+    flex:0 0 auto;
+    width: calc(50% - 5px);
+
+    @include isMobile{
+        width: 100%;
+    }
+}
+
+.edit-button{
+    background-color: rgb(100, 128, 223);
+    padding: 5px;
+    transition: background-color 0.4s;
+    border: none;
+
+    &:hover{
+        background-color: rgb(145, 169, 248);
+    }
+}
+
+.delete-button{
+    background-color: rgb(223, 100, 100);
+    padding: 5px;
+    transition: background-color 0.4s;
+    border: none;
+
+    &:hover{
+        background-color: rgb(248, 145, 145);
+    }
+}

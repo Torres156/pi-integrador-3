@@ -1,0 +1,21 @@
+@use "./themes/theme-default" as default;
+@use "./themes/theme-dark" as dark;
+
+$themes: (
+  default: default.$theme-default,
+  dark: dark.$theme-dark
+);
+
+@mixin generate-themes($themes) {
+    @each $theme-name, $vars in $themes {
+      $selector: if($theme-name == default, ':root', ':root[data-theme="#{$theme-name}"]');
+  
+      #{$selector} {
+        @each $var-name, $value in $vars {
+          --#{$var-name}: #{$value};
+        }
+      }
+    }    
+  }
+
+@include generate-themes($themes);

@@ -1,0 +1,750 @@
+:root {
+  --bg-color: white;
+  --border-color: rgb(230, 230, 230);
+  --text-primary: rgb(58, 58, 58);
+  --text-2: rgb(165, 165, 165);
+  --text-secondary: rgb(211, 211, 211);
+  --label-color: rgb(224, 89, 89);
+  --button-color: rgb(224, 89, 89);
+  --button-hover-color: rgb(248, 140, 140);
+  --menu-selected-color: rgb(250, 231, 231);
+  --shadow-color: rgba(0, 0, 0, 0.11);
+  --search-background: rgb(228, 228, 228);
+  --search-placeholder: rgb(71, 71, 71);
+  --search-color: black;
+  --table-hover: rgb(236, 236, 236);
+}
+
+:root[data-theme=dark] {
+  --bg-color: rgb(30, 30, 30);
+  --border-color: rgb(114, 114, 114);
+  --text-primary: white;
+  --text-2: rgb(165, 165, 165);
+  --text-secondary: rgb(119, 119, 119);
+  --label-color: rgb(252, 109, 109);
+  --button-color: rgb(224, 89, 89);
+  --button-hover-color: rgb(248, 140, 140);
+  --menu-selected-color: rgb(129, 62, 62);
+  --shadow-color: rgba(138, 158, 248, 0.534);
+  --search-background: white;
+  --search-placeholder: rgb(131, 131, 131);
+  --search-color: rgb(0, 0, 0);
+  --table-hover: rgb(41, 41, 41);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  width: 100dvw;
+}
+
+body {
+  display: flex;
+  max-width: 100%;
+  min-height: 100dvh;
+  background-color: var(--bg-color);
+}
+body #root {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  flex-direction: column;
+}
+body #root main {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+div {
+  display: flex;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.form-input {
+  width: 100%;
+  gap: 10px;
+}
+.form-input label {
+  width: 100%;
+  color: var(--label-color);
+  font-weight: 600;
+  font-size: 12px;
+}
+.form-input input, .form-input select {
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  height: 30px;
+  width: 100%;
+  background: none;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.form-input input::placeholder, .form-input select::placeholder {
+  color: var(--text-secondary);
+}
+.form-input input:focus, .form-input select:focus {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--border-color);
+}
+.form-input select:focus {
+  color: black;
+}
+
+.form-button {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 30px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--button-color);
+  transition: background-color 0.45s;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.form-button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.gap-4 {
+  gap: 1em;
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-button {
+  color: var(--button-color);
+}
+.text-button:hover {
+  color: var(--button-hover-color);
+}
+
+.text-secondary-hover {
+  transition: color 0.3s;
+}
+.text-secondary-hover:hover {
+  color: var(--text-primary);
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.m-10 {
+  margin: 20px;
+}
+
+.mt-10 {
+  margin: 10px;
+}
+
+.mt-20 {
+  margin: 20px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.translucy-desktop {
+  opacity: 0.8;
+  backdrop-filter: blur(10px);
+}
+@media screen and (max-width: 768px) {
+  .translucy-desktop {
+    opacity: unset;
+    backdrop-filter: unset;
+  }
+}
+
+.toggle-theme {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+.toggle-theme .close {
+  margin-left: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.toggle-theme .close svg {
+  fill: var(--button-color);
+  transition: fill 0.4s;
+}
+.toggle-theme .close:hover svg {
+  fill: var(--button-hover-color);
+}
+
+.row {
+  flex-direction: row;
+}
+
+.container {
+  padding: 40px;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  box-shadow: 0px 0 10px var(--shadow-color);
+}
+.container h1 {
+  color: var(--text-primary);
+  font-size: 18px;
+}
+
+.aspect {
+  flex: 1 0 250px;
+  aspect-ratio: 1/1;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1078px) {
+  .agendamentos-home {
+    flex-direction: column;
+    align-items: center; /* centraliza horizontalmente */
+  }
+  .agendamentos-home .aspect {
+    flex: 1;
+    aspect-ratio: 1/1;
+    max-width: 350px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0;
+    flex-direction: column;
+    border: 0;
+    box-shadow: none;
+  }
+  .aspect {
+    aspect-ratio: 3/1;
+  }
+}
+.donut {
+  position: relative;
+}
+
+.donut-percent {
+  font-size: 17px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+}
+.search span {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  color: var(--search-placeholder);
+  font-size: 14px;
+}
+.search span svg {
+  stroke: var(--search-placeholder) !important;
+}
+.search input[type=text] {
+  width: 100%;
+  max-width: 550px;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 4px;
+  color: var(--search-color);
+  font-weight: 600;
+  font-size: 14px;
+  background-color: var(--search-background);
+}
+.search input[type=text]:focus {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.col-2 {
+  flex: 0 0 auto;
+  width: calc(50% - 5px);
+}
+@media screen and (max-width: 768px) {
+  .col-2 {
+    width: 100%;
+  }
+}
+
+.edit-button {
+  background-color: rgb(100, 128, 223);
+  padding: 5px;
+  transition: background-color 0.4s;
+  border: none;
+}
+.edit-button:hover {
+  background-color: rgb(145, 169, 248);
+}
+
+.delete-button {
+  background-color: rgb(223, 100, 100);
+  padding: 5px;
+  transition: background-color 0.4s;
+  border: none;
+}
+.delete-button:hover {
+  background-color: rgb(248, 145, 145);
+}
+
+main.not-found {
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+main.login {
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main.login form {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--bg-color);
+  height: 100%;
+  max-height: 600px;
+  flex-direction: column;
+  align-items: center;
+  border: thin solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+}
+main.login form .logo {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 150px;
+}
+main.login form .content {
+  margin-top: 50px;
+  width: calc(100% - 40px);
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+main.login form .content h1 {
+  font-size: 25px;
+  color: var(--text-primary);
+  font-stretch: extra-expanded;
+}
+main.login form .content h2 {
+  font-size: 15px;
+  color: var(--text-2);
+  font-stretch: extra-expanded;
+  font-weight: 100;
+}
+main.login form .form-button {
+  max-width: 250px;
+}
+main.login form .footer {
+  margin: 10px 0;
+  width: calc(100% - 40px);
+  max-width: 250px;
+}
+@media screen and (max-width: 768px) {
+  main.login form {
+    max-width: unset;
+    border: unset;
+    box-shadow: unset;
+    max-height: 550px;
+  }
+  main.login form .logo {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  main.login {
+    background: none !important;
+    background-color: var(--bg-color);
+  }
+}
+
+main.dashboard {
+  background-color: var(--bg-color);
+}
+main.dashboard .form-input {
+  max-width: 1024px;
+}
+main.dashboard .toggle-theme .close {
+  display: flex;
+  right: 20px;
+}
+main.dashboard .close {
+  display: none;
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+main.dashboard .close svg {
+  fill: var(--button-color);
+  transition: fill 0.4s;
+}
+main.dashboard .close:hover svg {
+  fill: var(--button-hover-color);
+}
+main.dashboard .content {
+  padding: 30px 30px 0 30px;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  height: 100dvh;
+}
+main.dashboard .normal-table {
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+  align-items: center;
+}
+main.dashboard .normal-table > div {
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding: 5px 0;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: background-color 0.4s;
+  padding: 10px;
+  overflow: hidden;
+}
+main.dashboard .normal-table > div > span {
+  display: flex;
+  flex: 2;
+}
+main.dashboard .normal-table > div > span.text-center {
+  font-size: 12px;
+  color: var(--text-2);
+}
+main.dashboard .normal-table > div > span:last-child:not(:only-child) {
+  flex: 1;
+  color: var(--button-hover-color);
+  justify-content: end;
+}
+main.dashboard .normal-table > div:hover {
+  background-color: var(--table-hover);
+}
+main.dashboard .normal-table.home > div {
+  font-size: 12px;
+}
+main.dashboard .menu-open {
+  display: none;
+}
+main.dashboard > nav {
+  display: flex;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0 15px var(--shadow-color);
+}
+main.dashboard > nav > div {
+  align-items: center;
+}
+main.dashboard > nav > div .logo {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+}
+main.dashboard > nav > div > h1 {
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: normal;
+}
+main.dashboard > nav > div > h2 {
+  font-size: 12px;
+  font-weight: normal;
+}
+main.dashboard > nav > div > ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 100%;
+}
+main.dashboard > nav > div > ul li {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+main.dashboard > nav > div > ul li > div {
+  width: 100%;
+  max-width: 200px;
+  gap: 10px;
+  transition: gap 0.4s;
+  color: var(--text-primary);
+  align-items: center;
+}
+main.dashboard > nav > div > ul li > div svg {
+  fill: var(--text-secondary);
+}
+main.dashboard > nav > div > ul li > div:hover {
+  gap: 15px;
+}
+main.dashboard > nav > div > ul li.selected {
+  background-color: var(--menu-selected-color);
+}
+main.dashboard > nav > div > ul li.selected > div svg {
+  fill: var(--button-color);
+}
+main.dashboard .subtitle {
+  width: 100%;
+  color: var(--text-primary);
+  justify-content: center;
+  font-weight: 600;
+}
+main.dashboard .agendamentos-home {
+  justify-content: center;
+}
+main.dashboard .agendamentos-home .container {
+  max-width: 300px;
+  align-items: center;
+}
+main.dashboard .agendamentos-home .container .total {
+  font-size: 50px;
+  margin: auto;
+  color: var(--text-primary);
+}
+main.dashboard .agendamentos-relatorios {
+  justify-content: center;
+}
+main.dashboard .agendamentos-relatorios .container {
+  max-width: 300px;
+  align-items: center;
+}
+main.dashboard .agendamentos-relatorios .container .total {
+  font-size: 50px;
+  margin: auto;
+  color: var(--text-primary);
+}
+main.dashboard button.novo {
+  width: 100%;
+  max-width: 100px;
+  padding: 10px;
+  background-color: rgb(85, 197, 85);
+  border: 0;
+  border-radius: 8px;
+  transition: background-color 0.4s;
+  font-weight: 600;
+  color: white;
+}
+main.dashboard button.novo:hover {
+  background-color: rgb(115, 216, 115);
+}
+main.dashboard button.back {
+  width: 100%;
+  max-width: 100px;
+  padding: 10px;
+  background-color: var(--text-secondary);
+  border: 0;
+  border-radius: 8px;
+  transition: background-color 0.4s;
+  font-weight: 600;
+  color: white;
+}
+main.dashboard button.back:hover {
+  background-color: var(--text-2);
+}
+@media screen and (max-width: 768px) {
+  main.dashboard .form-input {
+    flex-direction: column;
+  }
+  main.dashboard .content {
+    overflow-y: unset;
+    width: auto;
+    margin: 0 !important;
+  }
+  main.dashboard div.menu-open {
+    display: flex;
+    position: fixed;
+    z-index: 999;
+  }
+  main.dashboard .close {
+    display: flex;
+  }
+  main.dashboard .hidden {
+    display: none !important;
+    pointer-events: none;
+  }
+  main.dashboard .mobile-center {
+    justify-content: center;
+    font-size: 8px;
+  }
+  main.dashboard nav {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+  }
+  main.dashboard nav:has(.menu.hidden) {
+    pointer-events: none;
+  }
+  main.dashboard nav > div {
+    background-color: var(--bg-color);
+    opacity: 1;
+    transition: opacity 1s ease, visibility 1s ease;
+    visibility: visible;
+    height: 100dvh;
+  }
+  main.dashboard nav > div.hidden {
+    display: flex !important;
+    opacity: 0;
+    visibility: hidden;
+  }
+  main.dashboard nav > div > ul li > div {
+    max-width: 250px;
+  }
+  main.dashboard nav > div > ul li > div:hover {
+    gap: 10px;
+  }
+  main.dashboard > div:not(.header) {
+    margin-top: 60px;
+    width: 100%;
+    flex-direction: column;
+  }
+  main.dashboard > div:not(.header) h1 {
+    text-align: center;
+  }
+  main.dashboard .subtitle {
+    width: 100%;
+    color: var(--text-primary);
+    justify-content: end;
+    padding-bottom: 10px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+  }
+  main.dashboard .agendamentos-relatorios {
+    justify-content: center;
+    gap: 10;
+  }
+  main.dashboard .agendamentos-relatorios .container {
+    max-width: 100px;
+    align-items: center;
+    flex-direction: column;
+    line-break: auto;
+    position: relative;
+  }
+  main.dashboard .agendamentos-relatorios .container h1 {
+    font-size: 12px;
+  }
+  main.dashboard .agendamentos-relatorios .container .total {
+    font-size: 50px;
+    color: var(--text-primary);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  main.dashboard .agendamentos-relatorios .aspect {
+    aspect-ratio: 1/1;
+  }
+}
+
+#root {
+  position: absolute;
+  z-index: 1;
+}
+
+.swal2-container {
+  display: grid !important;
+}
+
+/*# sourceMappingURL=app.css.map */
